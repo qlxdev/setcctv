@@ -2,7 +2,7 @@
 <div class="nk-sidebar nk-sidebar-fixed is-light " data-content="sidebarMenu">
     <div class="nk-sidebar-element nk-sidebar-head">
         <div class="nk-sidebar-brand">
-            <a href="html/index.html" class="logo-link nk-sidebar-logo">
+            <a href="<?= base_url() ?>" class="logo-link nk-sidebar-logo">
                 <img class="logo-light logo-img" src="<?= base_url() ?>assets/images/icon_setcctv.png"
                     srcset="<?= base_url() ?>assets/images/icon_setcctv.png 2x" alt="logo">
                 <img class="logo-dark logo-img" src="<?= base_url() ?>assets/images/icon_setcctv.png"
@@ -49,7 +49,7 @@
                     <li class="nk-menu-item">
                         <a href="<?= base_url('riwayat') ?>" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-history"></em></span>
-                            <span class="nk-menu-text">Rekomendasi</span>
+                            <span class="nk-menu-text">Perhitungan</span>
                         </a>
                     </li><!-- .nk-menu-item -->
 

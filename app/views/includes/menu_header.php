@@ -16,7 +16,7 @@ $picttext = $t1 . $t2;
                         class="icon ni ni-menu"></em></a>
             </div>
             <div class="nk-header-brand d-xl-none">
-                <a href="html/index.html" class="logo-link">
+                <a href="<?= base_url() ?>" class="logo-link">
                     <img class="logo-light logo-img" src="<?= base_url() ?>assets/images/logo-rps.png"
                         srcset="<?= base_url() ?>assets/images/logo-rps.png 2x" alt="logo">
                     <img class="logo-dark logo-img" src="<?= base_url() ?>assets/images/logo-rps.png"

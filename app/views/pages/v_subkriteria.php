@@ -15,54 +15,35 @@
                             </div>
                             <h4 class="nk-block-title">Data Sub Kriteria</h4>
                             <div class="nk-block-des">
-                                <p>Data yang digunakan sebagai acuan input data alternatif.</p>
+                                <p>Data yang digunakan sebagai acuan input data uji.</p>
                             </div>
                         </div>
                     </div>
                     <div class="card card-preview">
                         <div class="card-inner">
                             <table class="table">
-                                <thead>
+                                <thead class="bg-light">
                                     <tr>
                                         <th>No</th>
                                         <th>Kriteria</th>
                                         <th>Sub Kriteria</th>
                                         <th>Nilai</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php
+                                    $no = 1;
+                                    foreach ($subkriteria as $row) { ?>
                                     <tr>
-                                        <td>1</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
-                                        <td width="150">
-                                            <a href="#" class="btn btn-sm btn-outline-light">Edit</a>
-                                            <a href="#" class="btn btn-sm btn-outline-light">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td width="150">
-                                            <a href="#" class="btn btn-sm btn-outline-light">Edit</a>
-                                            <a href="#" class="btn btn-sm btn-outline-light">Delete</a>
-                                        </td>
-                                    </tr>
+                                        <td><?= $no ?></td>
+                                        <td><?= $row->id_kriteria ?></td>
+                                        <td><?= $row->nama_subkriteria ?></td>
+                                        <td><?= $row->nilai_bobot ?></td>
 
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Customer Support</td>
-                                        <td>New York</td>
-                                        <td>27</td>
-                                        <td width="150">
-                                            <a href="#" class="btn btn-sm btn-outline-light">Edit</a>
-                                            <a href="#" class="btn btn-sm btn-outline-light">Delete</a>
-                                        </td>
                                     </tr>
+                                    <?php $no++;
+                                    } ?>
+
                                 </tbody>
                             </table>
                         </div>

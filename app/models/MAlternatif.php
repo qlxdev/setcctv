@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: sankester
@@ -6,22 +7,26 @@
  * Time: 15:51
  */
 
-class MUniversitas extends CI_Model{
+class MAlternatif extends CI_Model
+{
 
-    public $kdUniversitas;
-    public $universitas;
+    public $id_alternatif;
+    public $nama_alternatif;
 
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    private function getTable(){
-        return 'universitas';
+    private function getTable()
+    {
+        return 'alternatif';
     }
 
-    private function getData(){
+    private function getData()
+    {
         $data = array(
-            'universitas' => $this->universitas
+            'alternatif' => $this->nama_alternatif
         );
 
         return $data;
@@ -29,14 +34,14 @@ class MUniversitas extends CI_Model{
 
     public function getAll()
     {
-        $universitas = array();
+        $alternatif = array();
         $query = $this->db->get($this->getTable());
-        if($query->num_rows() > 0){
+        if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {
-                $universitas[] = $row;
+                $alternatif[] = $row;
             }
         }
-        return $universitas;
+        return $alternatif;
     }
 
 
@@ -50,22 +55,20 @@ class MUniversitas extends CI_Model{
     {
         $status = $this->db->update($this->getTable(), $this->getData(), $where);
         return $status;
-
     }
 
     public function delete($id)
     {
-        $this->db->where('kdUniversitas', $id);
+        $this->db->where('id_alternatif', $id);
         return $this->db->delete($this->getTable());
     }
 
-    public function getLastID(){
-        $this->db->select('kdUniversitas');
-        $this->db->order_by('kdUniversitas', 'DESC');
+    public function getLastID()
+    {
+        $this->db->select('id_alternatif');
+        $this->db->order_by('id_alternatif', 'DESC');
         $this->db->limit(1);
         $query = $this->db->get($this->getTable());
         return $query->row();
     }
-
-
 }

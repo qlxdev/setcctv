@@ -6,14 +6,16 @@
  * Date: 11/05/2017
  * Time: 15:53
  */
-class MKriteria extends CI_Model{
+class MKriteria extends CI_Model
+{
 
-    public $kdKriteria;
-    public $kriteria;
-    public $sifat;
+    public $id_kriteria;
+    public $nama_kriteria;
+    public $interest;
     public $bobot;
 
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
     }
 
@@ -22,10 +24,11 @@ class MKriteria extends CI_Model{
         return 'kriteria';
     }
 
-    private function getData(){
+    private function getData()
+    {
         $data = array(
-            'kriteria' => $this->kriteria,
-            'sifat' => $this->sifat,
+            'nama_kriteria' => $this->nama_kriteria,
+            'interest' => $this->interest,
             'bobot' => $this->bobot
         );
 
@@ -37,8 +40,8 @@ class MKriteria extends CI_Model{
     public function getAll()
     {
         $query = $this->db->get($this->getTable());
-        if($query->num_rows() > 0){
-            foreach ( $query->result() as $row) {
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
                 $kriterias[] = $row;
             }
             return $kriterias;
@@ -49,7 +52,7 @@ class MKriteria extends CI_Model{
     {
 
         $this->db->from($this->getTable());
-        $this->db->where('kdKriteria',$this->kdKriteria);
+        $this->db->where('id_kriteria', $this->id_kriteria);
         $query = $this->db->get();
 
         return $query->row();
@@ -69,13 +72,14 @@ class MKriteria extends CI_Model{
 
     public function delete($id)
     {
-        $this->db->where('kdKriteria', $id);
+        $this->db->where('id_kriteria', $id);
         return $this->db->delete($this->getTable());
     }
 
-    public function getLastID(){
-        $this->db->select('kdKriteria');
-        $this->db->order_by('kdKriteria', 'DESC');
+    public function getLastID()
+    {
+        $this->db->select('id_kriteria');
+        $this->db->order_by('id_kriteria', 'DESC');
         $this->db->limit(1);
         $query = $this->db->get($this->getTable());
         return $query->row();
@@ -83,9 +87,9 @@ class MKriteria extends CI_Model{
 
     public function getBobotKriteria()
     {
-        $query = $this->db->query('select kriteria, bobot from kriteria');
-        if($query->num_rows() > 0){
-            foreach ( $query->result() as $row) {
+        $query = $this->db->query('select nama_kriteria, bobot from kriteria');
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
                 $bobot[] = $row;
             }
             return $bobot;

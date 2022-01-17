@@ -6,15 +6,17 @@
  * Date: 11/05/2017
  * Time: 15:54
  */
-class MSubKriteria extends CI_Model{
+class MSubKriteria extends CI_Model
+{
 
-    public $kdSubKriteria;
-    public $kdKriteria;
-    public $subKriteria;
-    public $value;
+    public $id_subkriteria;
+    public $id_kriteria;
+    public $nama_subkriteria;
+    public $nilai_bobot;
 
 
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
     }
 
@@ -23,11 +25,12 @@ class MSubKriteria extends CI_Model{
         return 'subkriteria';
     }
 
-    private function getData(){
+    private function getData()
+    {
         $data = array(
-            'kdKriteria' => $this->kdKriteria,
-            'subKriteria' => $this->subKriteria,
-            'value' => $this->value
+            'id_kriteria' => $this->id_kriteria,
+            'nama_subkriteria' => $this->nama_subkriteria,
+            'nilai_bobot' => $this->nilai_bobot
         );
         return $data;
     }
@@ -35,21 +38,21 @@ class MSubKriteria extends CI_Model{
     public function getAll()
     {
         $query = $this->db->get($this->getTable());
-        if($query->num_rows() > 0){
+        if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {
                 $subkriterias[] = $row;
             }
 
-            return$subkriterias;
+            return $subkriterias;
         }
     }
 
     public function getById()
     {
-        $this->db->where('kdKriteria', $this->kdKriteria);
+        $this->db->where('id_kriteria', $this->id_kriteria);
         $query = $this->db->get($this->getTable());
 
-        if($query->num_rows() > 0){
+        if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {
                 $subkriteria[] = $row;
             }
@@ -68,15 +71,15 @@ class MSubKriteria extends CI_Model{
     public function update()
     {
         $data = $this->getData();
-        $this->db->where('kdSubKriteria', $this->kdSubKriteria);
-        $this->db->where('kdKriteria', $this->kdKriteria);
+        $this->db->where('id_subkriteria', $this->id_subkriteria);
+        $this->db->where('id_kriteria', $this->id_kriteria);
         $this->db->update($this->getTable(), $data);
         return $this->db->affected_rows();
     }
 
     public function delete($id)
     {
-        $this->db->where('kdKriteria', $id);
+        $this->db->where('id_kriteria', $id);
         return $this->db->delete($this->getTable());
     }
 }

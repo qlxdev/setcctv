@@ -6,8 +6,10 @@
  * Date: 11/05/2017
  * Time: 15:55
  */
-class MSAW extends CI_Model{
-    public function __construct(){
+class MSAW extends CI_Model
+{
+    public function __construct()
+    {
         parent::__construct();
         $this->load->dbforge();
     }
@@ -19,19 +21,20 @@ class MSAW extends CI_Model{
     public function createTable($field)
     {
         $fields = array(
-            'Universitas VARCHAR(120) not null'
+            'Alternatif VARCHAR(120) not null'
         );
 
 
         foreach ($field as $item => $value) {
-            $fields[] = $value->kriteria.' DECIMAL(13,2) not null ';
+            $fields[] = $value->nama_kriteria . ' CHAR(5) not null ';
         }
 
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('saw');
     }
 
-    public function deleteTable(){
+    public function deleteTable()
+    {
         $this->dbforge->drop_table('saw');
     }
 
@@ -44,8 +47,8 @@ class MSAW extends CI_Model{
     public function getAll()
     {
         $query = $this->db->get($this->getTable());
-        if($query->num_rows() > 0){
-            foreach ( $query->result() as $row) {
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
                 $saw[] = $row;
             }
             return $saw;
@@ -54,21 +57,21 @@ class MSAW extends CI_Model{
 
     public function getStatus($key)
     {
-        $this->db->select('sifat');
-        $this->db->where('kriteria',$key);
+        $this->db->select('interest');
+        $this->db->where('nama_kriteria', $key);
         $query = $this->db->get('kriteria');
         return $query->row();
     }
 
     public function update($data, $where)
     {
-        $this->db->update($this->getTable(),$data,$where);
+        $this->db->update($this->getTable(), $data, $where);
     }
 
     public function addColumnTotalRangking()
     {
         $fields = array(
-            'Total  DECIMAL(13,2)',
+            'Total  CHAR(5)',
             'Rangking  INT'
         );
         $this->dbforge->add_column($this->getTable(), $fields);
@@ -78,8 +81,8 @@ class MSAW extends CI_Model{
     {
         $this->db->order_by('Total', 'DESC');
         $query = $this->db->get($this->getTable());
-        if($query->num_rows() > 0){
-            foreach ( $query->result() as $row) {
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
                 $dataSaw[] = $row;
             }
             return $dataSaw;
@@ -88,8 +91,6 @@ class MSAW extends CI_Model{
 
     public function dropTable()
     {
-        $this->dbforge->drop_table($this->getTable(),TRUE);
+        $this->dbforge->drop_table($this->getTable(), TRUE);
     }
-
-
 }

@@ -22,47 +22,27 @@
                     <div class="card card-preview">
                         <div class="card-inner">
                             <table class="table">
-                                <thead>
+                                <thead class="bg-light">
                                     <tr>
                                         <th>No</th>
                                         <th>Kriteria</th>
-                                        <th>Sifat</th>
+                                        <th>Kepentingan</th>
                                         <th>Bobot</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php
+                                    $no = 1;
+                                    foreach ($kriteria as $item) {
+                                    ?>
                                     <tr>
-                                        <td>1</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
-                                        <td width="150">
-                                            <a href="#" class="btn btn-sm btn-outline-light">Edit</a>
-                                            <a href="#" class="btn btn-sm btn-outline-light">Delete</a>
-                                        </td>
+                                        <td><?= $no ?></td>
+                                        <td><?= $item->nama_kriteria ?></td>
+                                        <td><?= ($item->interest == 'B') ? 'Benefit' : 'Cost'; ?></td>
+                                        <td><?= $item->bobot ?></td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td width="150">
-                                            <a href="#" class="btn btn-sm btn-outline-light">Edit</a>
-                                            <a href="#" class="btn btn-sm btn-outline-light">Delete</a>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Customer Support</td>
-                                        <td>New York</td>
-                                        <td>27</td>
-                                        <td width="150">
-                                            <a href="#" class="btn btn-sm btn-outline-light">Edit</a>
-                                            <a href="#" class="btn btn-sm btn-outline-light">Delete</a>
-                                        </td>
-                                    </tr>
+                                    <?php $no++;
+                                    } ?>
                                 </tbody>
                             </table>
                         </div>
