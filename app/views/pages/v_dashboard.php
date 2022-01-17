@@ -47,7 +47,7 @@ $picttext = $t1 . $t2;
                                         <div class="card-title-group mt-n1">
                                             <div class="card-title">
                                                 <h6 class="title mt-2 mb-4">Kriteria</h6>
-                                                <h2>5</h2>
+                                                <h2>4</h2>
                                             </div>
 
                                         </div>
@@ -64,7 +64,7 @@ $picttext = $t1 . $t2;
                                         <div class="card-title-group mt-n1">
                                             <div class="card-title">
                                                 <h6 class="title mt-2 mb-4">Alternatif</h6>
-                                                <h2>5</h2>
+                                                <h2>4</h2>
                                             </div>
 
                                         </div>

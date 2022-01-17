@@ -25,6 +25,26 @@ class Alternatif extends CI_Controller
         $this->load->view('pages/v_alternatif', $data);
         $this->load->view('includes/footer');
     }
+
+    public function addnew()
+    {
+        // print_r($this->input->post());
+        foreach ($this->input->post() as $key => $value) {
+            if (is_numeric($key)) {
+                $data = array(
+                    'id_alternatif' => $this->input->post('alternatif'),
+                    'id_kriteria' => $key,
+                    'nilai' => $value,
+                );
+                $this->db->insert('data_uji', $data);
+                redirect('/alternatif', 'refresh');
+                # code...
+            }
+
+
+            # code...
+        }
+    }
 }
 
 /* End of file Alternatif.php */

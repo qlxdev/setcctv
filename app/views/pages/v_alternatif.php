@@ -95,68 +95,77 @@
      <div class="modal-dialog" role="document">
          <div class="modal-content">
              <div class="modal-header">
-                 <h5 class="modal-title">Customer Info</h5>
+                 <h5 class="modal-title">Add Data</h5>
                  <a href="#" class="close" data-dismiss="modal" aria-label="Close">
                      <em class="icon ni ni-cross"></em>
                  </a>
              </div>
              <div class="modal-body">
-                 <form action="#" class="form-validate is-alter">
+                 <form action="<?= base_url('alternatif/addnew') ?>" class="form-validate is-alter" method="post">
                      <div class="form-group">
-                         <label class="form-label" for="full-name">Full Name</label>
+                         <label class="form-label" for="full-name">Device</label>
                          <div class="form-control-wrap">
-                             <input type="text" class="form-control" id="full-name" required>
+                             <input type="text" class="form-control" name="device" id="full-name"
+                                 placeholder="Masukkan nama device" required>
+                         </div>
+                     </div>
+
+                     <div class="form-group">
+                         <label class="form-label" for="phone-no">Alternatif</label>
+                         <div class="form-control-wrap">
+                             <select class="form-control" name="alternatif">
+                                 <option value="1">Dalam Rumah</option>
+                                 <option value="3">Luar Rumah</option>
+                                 <option value="2">Tepi Jalan</option>
+                                 <option value="4">Lokasi Parkir</option>
+                             </select>
                          </div>
                      </div>
                      <div class="form-group">
-                         <label class="form-label" for="email-address">Email address</label>
+                         <label class="form-label" for="phone-no">Tipe CCTV</label>
                          <div class="form-control-wrap">
-                             <input type="text" class="form-control" id="email-address" required>
+                             <select class="form-control" name="1">
+                                 <option value="0.2">Tipe Dome</option>
+                                 <option value="0.5">Tipe Bullet</option>
+                                 <option value="1">Infrared</option>
+                             </select>
                          </div>
                      </div>
                      <div class="form-group">
-                         <label class="form-label" for="phone-no">Phone No</label>
+                         <label class="form-label" for="phone-no">Kondisi Ruang</label>
                          <div class="form-control-wrap">
-                             <input type="text" class="form-control" id="phone-no">
+                             <select class="form-control" name="2">
+                                 <option value="0.2">Ruang Terbuka</option>
+                                 <option value="1">Ruang Tertutup</option>
+                                 <option value="0.5">Semi Terbuka</option>
+                             </select>
                          </div>
                      </div>
                      <div class="form-group">
-                         <label class="form-label">Communication</label>
-                         <ul class="custom-control-group g-3 align-center">
-                             <li>
-                                 <div class="custom-control custom-control-sm custom-checkbox">
-                                     <input type="checkbox" class="custom-control-input" id="com-email">
-                                     <label class="custom-control-label" for="com-email">Email</label>
-                                 </div>
-                             </li>
-                             <li>
-                                 <div class="custom-control custom-control-sm custom-checkbox">
-                                     <input type="checkbox" class="custom-control-input" id="com-sms">
-                                     <label class="custom-control-label" for="com-sms">SMS</label>
-                                 </div>
-                             </li>
-                             <li>
-                                 <div class="custom-control custom-control-sm custom-checkbox">
-                                     <input type="checkbox" class="custom-control-input" id="com-phone">
-                                     <label class="custom-control-label" for="com-phone">Phone</label>
-                                 </div>
-                             </li>
-                         </ul>
-                     </div>
-                     <div class="form-group">
-                         <label class="form-label" for="pay-amount">Amount</label>
+                         <label class="form-label" for="phone-no">Lokasi obyek</label>
                          <div class="form-control-wrap">
-                             <input type="text" class="form-control" id="pay-amount">
+                             <select class="form-control" name="3">
+                                 <option value="0.5">jauh dari Obyek</option>
+                                 <option value="1">Dekat dari obyek</option>
+                             </select>
                          </div>
                      </div>
                      <div class="form-group">
-                         <button type="submit" class="btn btn-lg btn-primary">Save Informations</button>
+                         <label class="form-label" for="phone-no">Pencahayaan</label>
+                         <div class="form-control-wrap">
+                             <select class="form-control" name="4">
+                                 <option value="1">Cukup</option>
+                                 <option value="0.5">Kurang</option>
+                             </select>
+                         </div>
+                     </div>
+
+                     <div class="form-group">
+                         <button type="submit" class="btn btn-lg btn-primary">Simpan Data</button>
                      </div>
                  </form>
              </div>
-             <div class="modal-footer bg-light">
-                 <span class="sub-text">Modal Footer Text</span>
-             </div>
+
          </div>
      </div>
  </div>
