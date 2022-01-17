@@ -29,7 +29,7 @@
                     <li class="nk-menu-item">
                         <a href="<?= base_url('alternatif') ?>" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
-                            <span class="nk-menu-text">Data Alternatif</span>
+                            <span class="nk-menu-text">Data Uji</span>
                         </a>
                     </li><!-- .nk-menu-item -->
 
@@ -49,7 +49,7 @@
                     <li class="nk-menu-item">
                         <a href="<?= base_url('riwayat') ?>" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-history"></em></span>
-                            <span class="nk-menu-text">Riwayat</span>
+                            <span class="nk-menu-text">Rekomendasi</span>
                         </a>
                     </li><!-- .nk-menu-item -->
 

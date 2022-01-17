@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2021 at 07:30 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.1.32
+-- Generation Time: Jan 17, 2022 at 12:58 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,19 +19,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dbsmartphone`
+-- Database: `setcctv`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `alternatif`
---
-
-CREATE TABLE `alternatif` (
-  `id_alternatif` int(11) NOT NULL,
-  `nama_alternatif` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -44,24 +33,8 @@ CREATE TABLE `data_uji` (
   `id_alternatif` int(11) NOT NULL,
   `id_kriteria` int(11) NOT NULL,
   `id_subkriteria` int(11) NOT NULL,
-  `result` decimal(10,0) NOT NULL,
+  `result` char(5) NOT NULL,
   `keterangan` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `katalog`
---
-
-CREATE TABLE `katalog` (
-  `Id_katalog` int(11) NOT NULL,
-  `Id_alternatif` int(11) NOT NULL,
-  `Id_kriteria` int(11) NOT NULL,
-  `Id_subkriteria` int(11) NOT NULL,
-  `Id_toko` int(11) NOT NULL,
-  `harga` int(11) NOT NULL,
-  `spesifikasi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -72,8 +45,20 @@ CREATE TABLE `katalog` (
 
 CREATE TABLE `kriteria` (
   `id_kriteria` int(11) NOT NULL,
-  `nama_kriteria` varchar(255) NOT NULL
+  `nama_kriteria` varchar(255) NOT NULL,
+  `interest` char(1) NOT NULL COMMENT 'B=benefit | C=cost',
+  `bobot` char(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kriteria`
+--
+
+INSERT INTO `kriteria` (`id_kriteria`, `nama_kriteria`, `interest`, `bobot`) VALUES
+(1, 'Tipe CCTV', 'B', '0.40'),
+(2, 'Kondisi', 'B', '0.30'),
+(3, 'Lokasi', 'C', '0.15'),
+(4, 'Pencahayaan', 'C', '0.15');
 
 -- --------------------------------------------------------
 
@@ -85,23 +70,24 @@ CREATE TABLE `subkriteria` (
   `id_subkriteria` int(11) NOT NULL,
   `id_kriteria` int(11) NOT NULL,
   `nama_subkriteria` varchar(255) NOT NULL,
-  `nilai_bobot` decimal(10,0) NOT NULL,
-  `cost` varchar(11) NOT NULL
+  `nilai_bobot` char(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `toko`
+-- Dumping data for table `subkriteria`
 --
 
-CREATE TABLE `toko` (
-  `id_toko` int(11) NOT NULL,
-  `nama_toko` varchar(255) NOT NULL,
-  `alamat` text NOT NULL,
-  `latitude` varchar(255) NOT NULL,
-  `longitude` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `subkriteria` (`id_subkriteria`, `id_kriteria`, `nama_subkriteria`, `nilai_bobot`) VALUES
+(1, 1, 'Tipe Dome', '0.2'),
+(2, 1, 'Tipe Bullet', '0.5'),
+(3, 1, 'Infrared', '1'),
+(4, 2, 'Ruang Terbuka', '0.2'),
+(5, 2, 'Ruang Tertutup', '1'),
+(6, 2, 'Semi Terbuka', '0.5'),
+(7, 3, 'Dekat dari Obyek', '1'),
+(8, 3, 'Jauh dari Obyek', '0.5'),
+(9, 4, 'Cukup', '1'),
+(10, 4, 'Kurang', '0.5');
 
 -- --------------------------------------------------------
 
@@ -118,14 +104,15 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indexes for dumped tables
+-- Dumping data for table `users`
 --
 
+INSERT INTO `users` (`id`, `nama`, `username`, `password`, `role`) VALUES
+(1, 'Admin Ganteng', 'admin', 'admin', 'admin');
+
 --
--- Indexes for table `alternatif`
+-- Indexes for dumped tables
 --
-ALTER TABLE `alternatif`
-  ADD PRIMARY KEY (`id_alternatif`);
 
 --
 -- Indexes for table `data_uji`
@@ -149,12 +136,6 @@ ALTER TABLE `subkriteria`
   ADD KEY `id_kriteria` (`id_kriteria`) USING BTREE;
 
 --
--- Indexes for table `toko`
---
-ALTER TABLE `toko`
-  ADD PRIMARY KEY (`id_toko`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -163,12 +144,6 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `alternatif`
---
-ALTER TABLE `alternatif`
-  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `data_uji`
@@ -180,25 +155,19 @@ ALTER TABLE `data_uji`
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `subkriteria`
 --
 ALTER TABLE `subkriteria`
-  MODIFY `id_subkriteria` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `toko`
---
-ALTER TABLE `toko`
-  MODIFY `id_toko` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_subkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
